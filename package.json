@@ -3,9 +3,9 @@
   "description": "TODO",
   "version": "0.0.1",
   "scripts": {
-    "dev": "sapper dev --spa",
-    "build": "sapper build --legacy --spa",
-    "export": "sapper export --legacy --spa",
+    "dev": "sapper dev --ssr=false --hashbang",
+    "build": "sapper build --legacy --ssr=false --hashbang",
+    "export": "sapper export --legacy --ssr=false --hashbang",
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
