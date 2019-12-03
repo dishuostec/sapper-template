@@ -1,6 +1,6 @@
 # sapper-template
 
-The default [Sapper](https://github.com/sveltejs/sapper) template, available for Rollup and webpack.
+The SPA [Sapper](https://github.com/sveltejs/sapper) template, available for Rollup.
 
 
 ## Getting started
@@ -8,13 +8,11 @@ The default [Sapper](https://github.com/sveltejs/sapper) template, available for
 
 ### Using `degit`
 
-[`degit`](https://github.com/Rich-Harris/degit) is a scaffolding tool that lets you create a directory from a branch in a repository. Use either the `rollup` or `webpack` branch in `sapper-template`:
+[`degit`](https://github.com/Rich-Harris/degit) is a scaffolding tool that lets you create a directory from a branch in a repository. Use the `spa-rollup` branch in `sapper-template`:
 
 ```bash
 # for Rollup
-npx degit "sveltejs/sapper-template#rollup" my-app
-# for webpack
-npx degit "sveltejs/sapper-template#webpack" my-app
+npx degit "sveltejs/sapper-template#spa-rollup" my-app
 ```
 
 
@@ -54,13 +52,11 @@ This is the heart of your Sapper app. There are two kinds of routes — *pages*,
 
 **Pages** are Svelte components written in `.svelte` files. When a user first visits the application, they will be served a server-rendered version of the route in question, plus some JavaScript that 'hydrates' the page and initialises a client-side router. From that point forward, navigating to other pages is handled entirely on the client for a fast, app-like feel. (Sapper will preload and cache the code for these subsequent pages, so that navigation is instantaneous.)
 
-**Server routes** are modules written in `.js` files, that export functions corresponding to HTTP methods. Each function receives Express `request` and `response` objects as arguments, plus a `next` function. This is useful for creating a JSON API, for example.
-
 There are three simple rules for naming the files that define your routes:
 
 * A file called `src/routes/about.svelte` corresponds to the `/about` route. A file called `src/routes/blog/[slug].svelte` corresponds to the `/blog/:slug` route, in which case `params.slug` is available to the route
-* The file `src/routes/index.svelte` (or `src/routes/index.js`) corresponds to the root of your app. `src/routes/about/index.svelte` is treated the same as `src/routes/about.svelte`.
-* Files and directories with a leading underscore do *not* create routes. This allows you to colocate helper modules and components with the routes that depend on them — for example you could have a file called `src/routes/_helpers/datetime.js` and it would *not* create a `/_helpers/datetime` route
+* The file `src/routes/index.svelte`  corresponds to the root of your app. `src/routes/about/index.svelte` is treated the same as `src/routes/about.svelte`.
+* Files and directories with a leading underscore do *not* create routes. This allows you to colocate helper modules and components with the routes that depend on them — for example you could have a file called `src/routes/_helpers/datetime.svelte` and it would *not* create a `/_helpers/datetime` route
 
 
 ### static
@@ -78,7 +74,7 @@ import { files } from '@sapper/service-worker';
 
 ## Bundler config
 
-Sapper uses Rollup or webpack to provide code-splitting and dynamic imports, as well as compiling your Svelte components. With webpack, it also provides hot module reloading. As long as you don't do anything daft, you can edit the configuration files to add whatever plugins you'd like.
+Sapper uses Rollup to provide code-splitting and dynamic imports, as well as compiling your Svelte components. As long as you don't do anything daft, you can edit the configuration files to add whatever plugins you'd like.
 
 
 ## Production mode and deployment

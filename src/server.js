@@ -1,16 +1,19 @@
+import fs from 'fs';
 import sirv from 'sirv';
 import polka from 'polka';
 import compression from 'compression';
-import * as sapper from '@sapper/server';
+import { build_dir, dev } from '@sapper/internal/manifest-server';
+import { generate_mock_api_data } from './mock/generate-mock-api-data.js';
 
-const { PORT, NODE_ENV } = process.env;
-const dev = NODE_ENV === 'development';
+generate_mock_api_data();
+
+const { PORT } = process.env;
 
 polka() // You can also use Express
 	.use(
 		compression({ threshold: 0 }),
+		sirv(build_dir, { dev }),
 		sirv('static', { dev }),
-		sapper.middleware()
 	)
 	.listen(PORT, err => {
 		if (err) console.log('error', err);

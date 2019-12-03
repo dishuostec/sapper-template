@@ -1,5 +1,15 @@
 <script>
 	export let segment;
+
+	import {
+		ROUTE_INDEX,
+		ROUTE_ABOUT,
+		ROUTE_BLOG,
+	} from '@sapper/internal/manifest-client.mjs';
+
+	const index = ROUTE_INDEX();
+	const about = ROUTE_ABOUT();
+	const blog = ROUTE_BLOG();
 </script>
 
 <style>
